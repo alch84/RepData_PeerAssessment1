@@ -1,4 +1,9 @@
-# Reproducible Research: Peer Assessment 1
+---
+title: "Reproducible Research: Peer Assessment 1"
+output: 
+  html_document:
+    keep_md: true
+---
 
 
 ## Loading and preprocessing the data
@@ -54,17 +59,10 @@ The histogram of the number of steps taken each day is drawn and presented below
 
 ```r
 library(ggplot2)
-```
-
-```
-## Warning: package 'ggplot2' was built under R version 3.2.2
-```
-
-```r
 ggplot()+aes(total_steps$steps)+geom_histogram(binwidth=2000,colour="black",fill="blue")+xlab("Total number of steps taken per day")+ylab("Frequency")+ggtitle("Total number of steps taken each day")
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-3-1.png) 
+![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3-1.png) 
 
 The mean of the total number of steps taken per day is calculated as follows:
 
@@ -121,7 +119,7 @@ Below is a time series plot of the 5-minute interval (x-axis) and the average nu
 ggplot(average_steps,aes(interval,steps))+geom_line(color="red")+xlab("Time of day (24H, 5-minute intervals)")+ylab("Average number of steps per day")+ggtitle("Average number of steps taken each day by 5-minute intervals")
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-7-1.png) 
+![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7-1.png) 
 
 Which 5-minute interval, on average across all the days in the dataset, contains the maximum number of steps?
 
@@ -200,7 +198,7 @@ total_steps_revised<-aggregate(steps~date,data=activity_revised,sum)
 ggplot()+aes(total_steps_revised$steps)+geom_histogram(binwidth=2000,colour="black",fill="blue")+xlab("Total number of steps taken per day")+ylab("Frequency")+ggtitle("Total number of steps taken each day")
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-12-1.png) 
+![plot of chunk unnamed-chunk-12](figure/unnamed-chunk-12-1.png) 
 
 The revised mean and median total number of steps taken per day is recalculated. 
 
@@ -251,6 +249,6 @@ average_steps_weekday<-aggregate(steps~interval+weekdays,data=activity_weekdays,
 ggplot(average_steps_weekday,aes(interval,steps))+geom_line(color="blue")+xlab("Time of day (24H, 5-minute intervals)")+ylab("Average number of steps per day")+ggtitle("Average number of steps taken each day by 5-minute intervals")+facet_grid(weekdays ~ .)
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-15-1.png) 
+![plot of chunk unnamed-chunk-15](figure/unnamed-chunk-15-1.png) 
 
 Conclusion: minor but not substantial differences between weekday and weekend patterns.
